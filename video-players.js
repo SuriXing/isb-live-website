@@ -25,10 +25,22 @@ document.addEventListener('keydown', event => {
   });
 });
 
+// Load the real channel player only when the viewer chooses to watch.
+const livePlayer = document.getElementById('live-player');
+document.getElementById('start-live').addEventListener('click', () => {
+  livePlayer.src = livePlayer.dataset.src + '&autoplay=1';
+  livePlayer.hidden = false;
+  document.getElementById('live-cover').hidden = true;
+  document.getElementById('refresh-live').hidden = false;
+  livePlayer.parentElement.classList.add('is-playing');
+  livePlayer.focus();
+  document.getElementById('live-feedback').textContent =
+    'If the broadcast is unavailable, try Reload when it begins.';
+});
+
 // Reload only on request so an ongoing broadcast is never interrupted by polling.
 document.getElementById('refresh-live').addEventListener('click', () => {
-  const player = document.getElementById('live-player');
-  player.src = player.getAttribute('src');
+  livePlayer.src = livePlayer.dataset.src;
   document.getElementById('live-feedback').textContent =
-    'Live player refreshed. Press play when the broadcast is available.';
+    'Player reloaded. Press play when the broadcast is available.';
 });

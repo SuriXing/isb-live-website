@@ -1,0 +1,68 @@
+.watch-section { padding-top: 56px; padding-bottom: 48px; }
+.watch-wrap { max-width: 1040px; }
+.watch-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+.watch-heading .eyebrow { color: var(--blue); font-size: 11px; letter-spacing: 2.2px; }
+.watch-heading h2 { margin: 10px 0 0; font-size: clamp(32px, 4vw, 44px); letter-spacing: -1.5px; }
+.watch-links { display: flex; gap: 24px; padding-bottom: 5px; }
+.watch-links a { color: var(--ink); font-size: 13px; font-weight: bold; text-decoration: none; padding: 10px 0; }
+.watch-links a:hover { color: var(--blue); }
+.watch-links span { margin-left: 5px; color: var(--muted); }
+.watch-shell { border: 1px solid #dbe6f4; border-radius: 18px; background: white; box-shadow: 0 16px 44px #0c244610; }
+.live-stage { position: relative; aspect-ratio: 16 / 9; min-height: 240px; background: #061b37; border-radius: 17px 17px 0 0; overflow: hidden; }
+.live-cover { position: absolute; inset: 0; color: white; background: radial-gradient(ellipse at 85% 55%, #19579c 0, #0c315f 42%, #061b37 78%); }
+.court-art { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: #79afff; stroke-width: 1.2; opacity: .18; }
+.stage-brand { position: absolute; top: 30px; left: 38px; font-size: 16px; font-weight: 900; letter-spacing: -.5px; }
+.stage-brand span { color: #9dcaff; margin-left: 3px; }
+.cover-content { position: absolute; top: 50%; left: 9%; transform: translateY(-44%); }
+.cover-kicker { font-size: 10px; font-weight: bold; letter-spacing: 3px; color: #a5c9f3; }
+.cover-content h3 { margin: 14px 0 16px; font-size: clamp(36px, 5.5vw, 66px); line-height: 1.02; letter-spacing: -2.5px; }
+.cover-content p { margin: 0 0 24px; font-size: 15px; color: #c4d8ef; }
+.start-live { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; padding: 13px 22px; border: 0; border-radius: 7px; color: #0b315f; background: white; font: inherit; font-size: 14px; font-weight: bold; cursor: pointer; transition: background .2s, box-shadow .2s; }
+.start-live:hover { background: #eaf2fc; box-shadow: 0 5px 24px #0003; }
+.cover-note { display: block; margin-top: 13px; font-size: 11px; color: #a5c1df; }
+.stage-caption { position: absolute; right: 28px; bottom: 24px; font-size: 9px; letter-spacing: 2px; color: #90b8e5; }
+.live-stage iframe { display: block; width: 100%; height: 100%; position: absolute; inset: 0; border: 0; }
+.live-stage [hidden], .watch-actions [hidden] { display: none; }
+.watch-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 17px 22px; }
+.channel-identity { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.channel-mark { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; background: #eaf2fc; color: var(--blue); border-radius: 10px; font-size: 12px; font-weight: 900; }
+.channel-identity strong { display: block; font-size: 14px; letter-spacing: .4px; }
+.channel-identity div > span { display: block; margin-top: 4px; font-size: 11px; color: var(--muted); }
+.watch-actions { display: flex; align-items: center; gap: 8px; }
+.reload-live { display: inline-flex; align-items: center; gap: 7px; min-width: 44px; min-height: 44px; padding: 9px 12px; border: 0; border-radius: 7px; background: transparent; color: var(--muted); font: inherit; font-size: 12px; cursor: pointer; }
+.reload-live:hover { background: var(--light); color: var(--blue); }
+.live-options .source-menu { width: min(270px, calc(100vw - 76px)); }
+.live-options .source-menu p { margin: 9px 0 2px; line-height: 1.6; color: var(--muted); }
+.live-options .source-menu a { color: var(--blue); font-weight: bold; }
+.watch-feedback { margin: 12px 2px 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.watch-feedback:empty { display: none; }
+@media (max-width: 600px) {
+  .watch-section { padding-top: 36px; padding-bottom: 36px; }
+  .watch-heading { gap: 12px; }
+  .watch-links { gap: 16px; }
+  .watch-links a { font-size: 12px; }
+  .watch-heading h2 { font-size: 32px; }
+  .watch-heading .eyebrow { font-size: 9px; letter-spacing: 1.5px; }
+  .live-stage { aspect-ratio: 4 / 5; max-height: 460px; }
+  .stage-brand { top: 24px; left: 24px; font-size: 14px; }
+  .cover-content { left: 26px; right: 20px; transform: translateY(-40%); }
+  .cover-content h3 { font-size: clamp(38px, 9vw, 54px); letter-spacing: -1.8px; }
+  .cover-content p { font-size: 13px; }
+  .cover-kicker { font-size: 9px; letter-spacing: 2px; }
+  .stage-caption { left: 26px; right: auto; bottom: 22px; font-size: 8px; letter-spacing: 1.3px; }
+  .watch-toolbar { padding: 12px; gap: 4px; }
+  .channel-identity { gap: 8px; }
+  .channel-identity div > span { max-width: 150px; line-height: 1.4; }
+  .channel-mark { width: 34px; height: 34px; border-radius: 8px; font-size: 11px; }
+  .watch-actions { gap: 0; }
+  .reload-live { padding: 10px; }
+  .reload-live span { display: none; }
+  .live-stage.is-playing { aspect-ratio: 16 / 9; max-height: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .start-live { transition: none; }
+}
+@media (max-width: 380px) {
+  .watch-heading { align-items: start; flex-direction: column; gap: 8px; }
+  .watch-links { padding-bottom: 0; }
+}
