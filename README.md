@@ -4,7 +4,19 @@ Student-built ISB LIVE website. This repository hosts the blue-and-white static 
 
 ## Edit
 
-Edit `index.html` to change the website or schedule. Livestream links are pending approval.
+Edit `index.html` to change the website or schedule. Broadcast coverage is pending confirmation.
+
+## Video players
+
+The Watch section embeds the ISB LIVE channel (`UCTDWdwy_Aghv8LF2LHGuQKw`). YouTube may show an unavailable player when no public, embeddable broadcast is active. Viewers who opened the page before a broadcast starts can use **Refresh live player** to reload it in place. Once a specific broadcast is confirmed, replace the iframe URL with `https://www.youtube.com/embed/VIDEO_ID?playsinline=1&rel=0`.
+
+Replays include JPAC Basketball 2026 and all six Great Wall Shootout 2025 recordings. The recording selectors update the embedded players in place using `video-players.js`. To add a recording, add an option with the YouTube video ID as its value. The highlights use the original MP4 hosted by ISB. Sources: [ISB LIVE](https://www.youtube.com/@ISBLiveStream/streams) and [ISB's archive](https://www.isb.cn/great-wall-shootout).
+
+In YouTube Studio, enable **Allow embedding** for each livestream and recording and make the broadcast public for channel discovery. Test a broadcast on the website before the event. YouTube can restrict playback by account, rights, or region; this static site cannot override those restrictions or independently verify live status. YouTube's own branding and optional outbound links remain inside its player. Source links on the site are tucked under **Having trouble playing?**; normal playback and recording selection stay on this page.
+
+Keep descriptive iframe titles, `allowfullscreen`, and `referrerpolicy="strict-origin-when-cross-origin"` when updating players. Keep a source link below each player for unavailable or restricted videos. Videos do not autoplay; replay embeds load lazily and the MP4 uses `preload="none"`.
+
+Preview over HTTP (for example, `python3 -m http.server 8000`) rather than opening the file directly, so YouTube receives the referring origin. Check desktop and mobile layouts and playback on a connection that can reach the video hosts.
 
 ## Publish
 
