@@ -11,6 +11,20 @@ document.querySelectorAll('select[data-player]').forEach(select => {
   });
 });
 
+// Keep the compact options menus dismissible with a pointer or keyboard.
+document.addEventListener('click', event => {
+  document.querySelectorAll('.replay-options[open]').forEach(menu => {
+    if (!menu.contains(event.target)) menu.open = false;
+  });
+});
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape') return;
+  document.querySelectorAll('.replay-options[open]').forEach(menu => {
+    if (menu.contains(document.activeElement)) menu.querySelector('summary').focus();
+    menu.open = false;
+  });
+});
+
 // Reload only on request so an ongoing broadcast is never interrupted by polling.
 document.getElementById('refresh-live').addEventListener('click', () => {
   const player = document.getElementById('live-player');
