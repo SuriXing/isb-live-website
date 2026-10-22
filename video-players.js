@@ -53,6 +53,13 @@ if (liveStatus && liveNow.length) {
       document.getElementById('live-cover').hidden = true;
       document.getElementById('refresh-live').hidden = false;
       livePlayer.parentElement.classList.add('is-playing');
+      // User click opens the chosen stream in fullscreen. If fullscreen is blocked,
+      // the embedded player remains visible in the page.
+      const stage = livePlayer.closest('.live-stage');
+      if (stage && stage.requestFullscreen) {
+        const request = stage.requestFullscreen();
+        if (request && request.catch) request.catch(() => {});
+      }
     });
     li.append(button);
     list.append(li);
