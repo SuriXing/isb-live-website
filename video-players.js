@@ -25,18 +25,41 @@ document.addEventListener('keydown', event => {
   });
 });
 
-// Load the real channel player only when the viewer chooses to watch.
+// Live broadcasts must be explicitly confirmed by the ISB LIVE team.
+// Add entries to window.ISB_LIVE_NOW as {title:"Event name", url:"https://www.youtube.com/watch?v=VIDEO_ID"}.
+// Without verified status, the cover shows NEXT UP instead of claiming a broadcast is live.
 const livePlayer = document.getElementById('live-player');
-document.getElementById('start-live').addEventListener('click', () => {
-  livePlayer.src = livePlayer.dataset.src + '&autoplay=1';
-  livePlayer.hidden = false;
-  document.getElementById('live-cover').hidden = true;
-  document.getElementById('refresh-live').hidden = false;
-  livePlayer.parentElement.classList.add('is-playing');
-  livePlayer.focus();
-  document.getElementById('live-feedback').textContent =
-    'If the broadcast is unavailable, try Reload when it begins.';
-});
+const liveStatus = document.getElementById('live-cover-status');
+const liveNow = Array.isArray(window.ISB_LIVE_NOW) ? window.ISB_LIVE_NOW : [];
+if (liveStatus && liveNow.length) {
+  liveStatus.replaceChildren();
+  const heading = document.createElement('strong');
+  heading.className = 'live-now-heading';
+  heading.textContent = 'NOW ON LIVE:';
+  liveStatus.append(heading);
+  const list = document.createElement('ul');
+  list.className = 'live-now-list';
+  liveNow.forEach(item => {
+    if (!item || typeof item.title !== 'string' || typeof item.url !== 'string') return;
+    const match = item.url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|live\/|embed\/))([A-Za-z0-9_-]{11})/);
+    if (!match) return;
+    const li = document.createElement('li');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = item.title + ' ↗';
+    button.addEventListener('click', () => {
+      livePlayer.src = 'https://www.youtube.com/embed/' + match[1] + '?autoplay=1&playsinline=1&rel=0';
+      livePlayer.hidden = false;
+      document.getElementById('live-cover').hidden = true;
+      document.getElementById('refresh-live').hidden = false;
+      livePlayer.parentElement.classList.add('is-playing');
+    });
+    li.append(button);
+    list.append(li);
+  });
+  liveStatus.append(list);
+  if (!list.children.length) liveStatus.innerHTML = '<a class="next-up-link" href="#schedule">NEXT UP →</a>';
+}
 
 // Reload only on request so an ongoing broadcast is never interrupted by polling.
 document.getElementById('refresh-live').addEventListener('click', () => {
