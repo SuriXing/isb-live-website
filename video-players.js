@@ -35,8 +35,9 @@ if (liveStatus && liveNow.length) {
   liveStatus.replaceChildren();
   const heading = document.createElement('strong');
   heading.className = 'live-now-heading';
-  heading.textContent = 'NOW ON LIVE:';
+  heading.textContent = 'LIVE LAYOUT DEMO';
   liveStatus.append(heading);
+  const notice=document.createElement('div');notice.className='live-demo-note';notice.textContent='3 past recordings · not broadcasting live';liveStatus.append(notice);
   const list = document.createElement('ul');
   list.className = 'live-now-list';
   liveNow.forEach(item => {
